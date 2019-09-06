@@ -1,0 +1,5 @@
+*.txt
+*.o
+*.mod
+delaunayLP
+generate

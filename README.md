@@ -58,7 +58,7 @@ the constraint equations are given by
    the standard inner product; and
  - c = [-q 1]^T.
 
-Then for the following linear program, a basis is primal feasibility 
+Then for the following linear program, a basis is primal feasibile
 if and only if it corresponds to the vertices of a Delaunay simplex,
 and a basis is dual feasible if and only if it corresponds to the vertices
 of a simplex containing q.
@@ -79,8 +79,8 @@ of an arbitrary linear programming problem DUALSIMPLEX, as well as a driver
 program for solving Delaunay interpolation problems, for points in
 general position.
 Note that if the input points are not in general position, then the basic
-solution to the dual problem may not be primal feasible, and the above
-methodology will in general fail.
+solution to this problem may not be basic optimal, and the above
+methodology will fail.
 
 ## Contents
 
@@ -174,5 +174,12 @@ make -B
 
 ## Further reading
 
-See Fukuda's FAQ in Polyhedral Computation
+See
+
+ - Fukuda's FAQ in Polyhedral Computation
 https://www.cs.mcgill.ca/~fukuda/soft/polyfaq/polyfaq.html
+ - Alternative methods for Delaunay interpolation:
+Tyler H. Chang, Layne T. Watson, Thomas C. H. Lux, Bo Li, Li Xu, Ali R. Butt, Kirk W. Cameron, and Yili Hong. 2018. A polynomial time algorithm for multivariate interpolation in arbitrary dimension via the Delaunay triangulation. In Proceedings of the ACMSE 2018 Conference (ACMSE '18). ACM, New York, NY, USA, Article 12, 8 pages.
+ - More on basic optimal solutions to LPs:
+Nimrod Megiddo. 1991. On finding primal-and dual-optimal bases. ORSA Journal on Computing 3.1, pp 63-65.
+
