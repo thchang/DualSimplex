@@ -1,23 +1,27 @@
 # DUALSIMPLEX code with Driver for Delaunay interpolation
 
-The DUALSIMPLEX code is an open source Fortran 90 module for solving
+DUALSIMPLEX is an open source Fortran 90 module for solving
 linear programs of the form
+
 ``
 max c^T x
 ``
 ``
 s.t. A x <= b
 ``
+
 where, c is a cost vector and A x <= b is a system of linear inequality
 constraints.
 
 DUALSIMPLEX solves this problem by applying the revised simplex method
 of Dantzig to the asymetric dual
+
 ``
 min b^T y
 ``
+s.t. 
 ``
-s.t. A^T y = c 
+A^T y = c 
 ``
 and
 ``
@@ -62,25 +66,25 @@ Then for the following linear program, a basis is primal feasibile
 if and only if it corresponds to the vertices of a Delaunay simplex,
 and a basis is dual feasible if and only if it corresponds to the vertices
 of a simplex containing q.
+
 ``
 max c^T x
 ``
+s.t. 
 ``
-s.t. A x <= b
+A x <= b
 ``
 
-So, it follows that any basic solution to the above problem results in the
-Delaunay simplex containing q, and the nonzero dual weights are exactly
+So, it follows that any basic optimal solution to the above problem results in
+a Delaunay simplex containing q, and the nonzero dual weights are exactly
 the convex (barycentric) weights needed for solving the interpolation
 problem.
 
-This repository provides open source code for solving the dual formulation
-of an arbitrary linear programming problem DUALSIMPLEX, as well as a driver
-program for solving Delaunay interpolation problems, for points in
-general position.
+The driver code for this repository solves the dual formulation of a
+Delaunay interpolation problem, for points in general position.
 Note that if the input points are not in general position, then the basic
-solution to this problem may not be basic optimal, and the above
-methodology will fail.
+solution to the linear programming formulation may not be basic optimal,
+and the above methodology will fail.
 
 ## Contents
 
@@ -108,7 +112,7 @@ dualsimplex.f90 contains a Fortran 90 module containing two subroutines:
    problem using DUALSIMPLEX.
 
 
-DUALSIMPLEX(N, M, AT, B, C, IBASIS, X, Y, IERR, EPS, IBUDGET, OBASIS)
+### DUALSIMPLEX(N, M, AT, B, C, IBASIS, X, Y, IERR, EPS, IBUDGET, OBASIS)
 
 On input:
  - N is the integer number of variables in the primal problem.
@@ -134,7 +138,7 @@ Optional arguments:
  - When present, OBASIS(:) returns the integer indices of the final basis
    as listed in AT.
 
-FEASIBLEBASIS (N, M, AT, C, BASIS, IERR, EPS, IBUDGET)
+### FEASIBLEBASIS (N, M, AT, C, BASIS, IERR, EPS, IBUDGET)
 
 On input:
  - N is the integer number of variables in the primal problem.
@@ -176,10 +180,8 @@ make -B
 
 See
 
- - Fukuda's FAQ in Polyhedral Computation
+ - Fukuda's FAQ:
 https://www.cs.mcgill.ca/~fukuda/soft/polyfaq/polyfaq.html
- - Alternative methods for Delaunay interpolation:
-Tyler H. Chang, Layne T. Watson, Thomas C. H. Lux, Bo Li, Li Xu, Ali R. Butt, Kirk W. Cameron, and Yili Hong. 2018. A polynomial time algorithm for multivariate interpolation in arbitrary dimension via the Delaunay triangulation. In Proceedings of the ACMSE 2018 Conference (ACMSE '18). ACM, New York, NY, USA, Article 12, 8 pages.
- - More on basic optimal solutions to LPs:
-Nimrod Megiddo. 1991. On finding primal-and dual-optimal bases. ORSA Journal on Computing 3.1, pp 63-65.
+ - Tyler H. Chang, Layne T. Watson, Thomas C. H. Lux, Bo Li, Li Xu, Ali R. Butt, Kirk W. Cameron, and Yili Hong. 2018. A polynomial time algorithm for multivariate interpolation in arbitrary dimension via the Delaunay triangulation. In Proceedings of the ACMSE 2018 Conference (ACMSE '18). ACM, New York, NY, USA, Article 12, 8 pages.
+ - Nimrod Megiddo. 1991. On finding primal-and dual-optimal bases. ORSA Journal on Computing 3.1, pp 63-65.
 
